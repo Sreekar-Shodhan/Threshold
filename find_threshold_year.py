@@ -1,6 +1,12 @@
 import pandas as pd
 
-THRESHOLD = 80.0
+import argparse
+
+parser = argparse.ArgumentParser(description="Find threshold achievement years for countries.")
+parser.add_argument('--threshold', type=float, default=80.0, help='Threshold value (default: 80.0)')
+args = parser.parse_args()
+THRESHOLD = args.threshold
+
 INPUT_CSVS = [
     "20-24-Primary_fin.csv",
     "20-24-Lower_Secondary_fin.csv",
@@ -32,3 +38,4 @@ if __name__ == "__main__":
         df_out = find_years(csv, THRESHOLD)
         df_out.to_csv(output_csv, index=False)
         print(f"Wrote output to {output_csv}")
+
